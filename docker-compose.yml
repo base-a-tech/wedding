@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+  mysql:
+    container_name: 'web_thiep_cuoi_mysql'
+    build: ./docker/mysql
+    platform: linux/x86_64
+    volumes:
+      - ./docker/mysql/db:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+      - ./docker/mysql/log:/var/log/mysql
+    ports:
+      - "3306:3306"
+    env_file: .env.db
+    # environment:
+    #   MYSQL_ROOT_HOST: "%"
+    #   MYSQL_ROOT_PASSWORD: password
+    #   DB_NAMES: web_thiep_cuoi
+    #   MYSQL_DATABASE: web_thiep_cuoi
+    #   MYSQL_PASSWORD: password
+    # command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    # tty: true
+    networks:
+      - backend
+
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin/phpmyadmin
+    container_name: web_thiep_cuoi_phpmyadmin
+    ports:
+      - "8088:80"
+    env_file: .env.db
+    environment:
+      PMA_HOST: mysql
+      UPLOAD_LIMIT: 1000M
+    networks:
+      - backend
+networks:
+  backend:
+    driver: bridge
+
