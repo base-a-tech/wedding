@@ -27,9 +27,9 @@ Route::get('wish', [AppController::class, 'wishList'])->name('wishList');
 
 Route::get('join', [AppController::class, 'showConfirmForm'])->name('showConfirmForm');
 
-Route::post('join', [AppController::class, 'join'])->name('join');
+// Route::post('join', [AppController::class, 'join'])->name('join');
 
-Route::post('confirm-join', [AppController::class, 'confirm'])->name('confirm');
+Route::post('confirm-join', [AppController::class, 'confirmJoin'])->name('confirm');
 
 Route::get('search-guests', [AppController::class, 'searchGuests'])->name('searchGuests');
 
@@ -39,7 +39,7 @@ Route::prefix('manager')->name('admin.')->group(function () {
     Route::get('login', [AdminLoginController::class, 'showLoginForm'])->name('auth.showLoginForm');
     Route::post('login', [AdminLoginController::class, 'login'])->name('auth.login');
 
-    Route::middleware([])->group(function () {
+    Route::middleware(['auth:admin'])->group(function () {
         Route::name('manager.')->group(function () {
             Route::get('/', [AdminController::class, 'index'])->name('index');
             Route::get('/create', [AdminController::class, 'create'])->name('create');

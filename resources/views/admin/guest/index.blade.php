@@ -6,7 +6,7 @@
         <div class="grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Danh sách quản trị viên</h4>
+                    <h4 class="card-title">Danh sách khách mời</h4>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -18,6 +18,7 @@
                                     <th>Khách mời của</th>
                                     <th>Email</th>
                                     <th>Địa chỉ</th>
+                                    <th>Ngày xác nhận tham dự</th>
                                     <th>Hành động</th>
                                 </tr>
                             </thead>
@@ -31,6 +32,7 @@
                                     <td>{{ $guest->side_text }}</td>
                                     <td>{{ $guest->email }}</td>
                                     <td>{{ $guest->address }}</td>
+                                    <td>{{ $guest->confirm_at }}</td>
                                     <td>
                                         <div class="d-flex">
                                         <a href="{{ route('admin.guest.edit', ['id' => $guest->id]) }}" class="btn btn-primary" style="margin-right: 5px">Chi tiết</a>

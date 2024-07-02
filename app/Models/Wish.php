@@ -9,5 +9,5 @@ class Wish extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['email', 'message', 'name', 'phone'];
+    protected $fillable = ['email', 'message', 'name', 'phone', 'guest_id'];
 }

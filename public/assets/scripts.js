@@ -470,7 +470,7 @@ var Neela;
                                     }, 5000);
                                 }
 
-                                form.reset();
+                                // form.reset();
                             },
                             error: function() {
                                 $( "#loader").hide();

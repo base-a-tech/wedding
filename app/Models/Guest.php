@@ -27,11 +27,17 @@ class Guest extends Model
         'phone',
         'email',
         'address',
-        'side'
+        'side',
+        'confirm_at'
     ];
 
     public function getSideTextAttribute()
     {
         return self::SIDES[$this->side] ?? 'Không xác định';
+    }
+
+    public function getIsShowBankAttribute()
+    {
+        return $this->side === self::SIDE_GROOM;
     }
 }

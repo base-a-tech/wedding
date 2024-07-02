@@ -33,7 +33,7 @@
                 </ul>
             </div>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
                 <i class="menu-icon mdi mdi-chart-line"></i>
                 <span class="menu-title">Charts</span>
@@ -88,6 +88,6 @@
                 <i class="menu-icon mdi mdi-file-document"></i>
                 <span class="menu-title">Documentation</span>
             </a>
-        </li>
+        </li> -->
     </ul>
 </nav>

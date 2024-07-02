@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Wish;
 use App\Models\Guest;
 use Response;
+use Carbon\Carbon;
 
 class AppController extends Controller
 {
@@ -18,10 +19,14 @@ class AppController extends Controller
             return redirect()->route('showConfirmForm');
         }
 
-        $wishes = Wish::all();
+        $wishes = Wish::orderBy('id', 'desc')->get();
+
+        $guest = Guest::where('code', $request->code)->firstOrFail();
+
         return view('home')->with([
             'wishes' => $wishes,
-            'donate' => true,
+            'donate' => $guest->is_show_bank,
+            'guest' => $guest,
             'qrInfo' => [
                 'image' => './assets/images/qr/nhatrai.jpg',
                 'bank' => 'Viet Combank',
@@ -33,7 +38,7 @@ class AppController extends Controller
 
     public function wishList()
     {
-        $wishes = Wish::all();
+        $wishes = Wish::orderBy('id', 'desc')->get();
         return Response::json($wishes);
     }
 
@@ -46,9 +51,18 @@ class AppController extends Controller
             'phone' => 'nullable|max:255|numeric',
         ]);
 
-        Wish::create($request->only(['email', 'message', 'name', 'phone']));
+        $data = $request->only(['email', 'message', 'name', 'phone']);
 
-        return redirect()->back();
+        if ($request->code) {
+            $guest = Guest::where('code', $request->code)->first();
+            $data['guest_id'] = $guest->id ?? null;
+        }
+
+        Wish::create($data);
+
+        return Response::json([
+            'status' => 'ok'
+        ]);
     }
 
     public function showConfirmForm()
@@ -61,9 +75,33 @@ class AppController extends Controller
         dd($request->all());
     }
 
+    public function confirmJoin(Request $request)
+    {
+        $guest = Guest::where('code', $request->code)->firstOrFail();
+        $guest->update([
+            'confirm_at' => Carbon::now()
+        ]);
+        return redirect()->back();
+    }
+
+
     public function searchGuests(Request $request)
     {
-        $guests = Guest::all();
+        $keyword = str_replace(' ', '%', $request->keyword);
+
+        if (!$keyword) {
+            return Response::json([]);
+        }
+
+        $guests = Guest::where('code', 'like', '%'.str_replace(' ', '', $request->keyword).'%')
+            ->orWhere('name', 'like', '%'.$keyword.'%')
+            ->orWhere('phone', 'like', '%'.str_replace(' ', '', $request->keyword).'%')
+            ->orWhere('email', 'like', '%'.$keyword.'%')
+            ->get()->map(function ($guest) {
+                $guest->phone = '**'.substr($guest->phone, 2, 4). '**********';
+                $guest->email = '**'.substr($guest->email, 2, 7). '**********';
+                return $guest;
+            });
         return Response::json($guests);
     }
 
