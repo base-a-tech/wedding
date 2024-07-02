@@ -38,13 +38,13 @@
                 <div class="form-group">
                   <input type="email" name="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" value="admin@example.com">
                   @if ($errors->has('email'))
-                    <p class="error">{{ $errors['email'] }}</p>
+                    <p class="error">{{ $errors->first('email') }}</p>
                   @endif
                 </div>
                 <div class="form-group">
                   <input type="password" name="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password"  value="password">
                   @if ($errors->has('password'))
-                    <p class="error">{{ $errors['password'] }}</p>
+                    <p class="error">{{ $errors->first('password') }}</p>
                   @endif
                 </div>
                 <div class="mt-3">
