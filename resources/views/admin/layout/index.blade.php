@@ -27,6 +27,9 @@
         color: red;
         font-size: 12px;
     }
+    .copy-btn:hover {
+        cursor: pointer;
+    }
   </style>
 </head>
 <body>

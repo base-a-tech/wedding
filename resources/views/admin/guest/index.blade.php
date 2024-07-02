@@ -19,6 +19,7 @@
                                     <th>Email</th>
                                     <th>Địa chỉ</th>
                                     <th>Ngày xác nhận tham dự</th>
+                                    <th>Link khách mời</th>
                                     <th>Hành động</th>
                                 </tr>
                             </thead>
@@ -33,6 +34,7 @@
                                     <td>{{ $guest->email }}</td>
                                     <td>{{ $guest->address }}</td>
                                     <td>{{ $guest->confirm_at }}</td>
+                                    <td><span id="linkGuest-{{ $guest->id}}">{{ route('home', ['code' => $guest->code]) }}</span> <i class="copy-btn mdi mdi-content-copy" onclick="copyText({{ $guest->id}})"></i></td>
                                     <td>
                                         <div class="d-flex">
                                         <a href="{{ route('admin.guest.edit', ['id' => $guest->id]) }}" class="btn btn-primary" style="margin-right: 5px">Chi tiết</a>
@@ -62,6 +64,26 @@
     function deleteAdmin(guestId) {
         console.log('deleteAdmin', guestId, `deleteForm-${guestId}`);
         $(`#deleteForm-${guestId}`).submit();
+    }
+
+    function copyText(id) {
+        // Get the text field
+        const copyText = document.getElementById(`linkGuest-${id}`).innerHTML;
+
+        const input = document.createElement("input");
+
+        input.value = copyText;
+
+        document.body.appendChild(input);
+
+        input.select();
+
+        document.execCommand("copy");
+
+        document.body.removeChild(input);
+
+        // Alert the copied text
+        alert("Đã copy link: " + copyText);
     }
 </script>
 @endsection
