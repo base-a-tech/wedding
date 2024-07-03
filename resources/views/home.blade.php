@@ -771,7 +771,7 @@
                                 <div class="neela-style">
                                     <span class="h-lines"></span>
                                     <span class="v-lines"></span>
-                                    <h4 class="fs-5">Mừng cưới đến cô dâu</h4>
+                                    <h4 class="fs-5">Mừng cưới chú rể</h4>
                                     <img class="qr-code-image m-auto mb-2" src="{{ $qrInfo['image'] }}">
                                     <p>
                                         Ngân hàng: <strong>{{ $qrInfo['bank'] }}</strong>
