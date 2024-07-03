@@ -16,11 +16,11 @@
     <meta property="og:url" content="{{ config('app.url') }}">
     <meta property="og:description"
         content="Quang Tùng &amp; Nguyễn Hương - Our wedding date: 2024-07-14 | Tình yêu không chỉ là một danh từ - nó là một động từ; nó còn hơn cả một cảm giác - đó là sự quan tâm, chia sẻ, giúp đỡ, hy sinh">
-    <meta property="og:image" content="./assets/images/66695e13a727b040b10f5440/710b96f9d6ae3d60bd74b7057af43d05.jpeg">
+    <meta property="og:image" content="{{ asset('assets/images/66695e13a727b040b10f5440/mobile.jpg') }}">
     <meta property="og:image:url"
-        content="./assets/images/66695e13a727b040b10f5440/710b96f9d6ae3d60bd74b7057af43d05.jpeg">
+        content="{{ asset('assets/images/66695e13a727b040b10f5440/mobile.jpg') }}">
     <meta property="og:image:secure_url"
-        content="./assets/images/66695e13a727b040b10f5440/710b96f9d6ae3d60bd74b7057af43d05.jpeg">
+        content="{{ asset('assets/images/66695e13a727b040b10f5440/mobile.jpg') }}">
     <!-- Fav and touch icons -->
     <link rel="shortcut icon" type="image/x-icon" href="https://iwedding.info/favicon.ico">
     <link rel="manifest" href="./assets/images/fav_touch_icons/manifest.json">
