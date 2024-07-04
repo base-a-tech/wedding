@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -38,5 +39,8 @@ class AppServiceProvider extends ServiceProvider
                 Log::info($query->bindings);
             });
         }
+        Paginator::defaultView('admin.pagination.default');
+
+        // Paginator::defaultSimpleView('admin.pagination.bootstrap-4');
     }
 }

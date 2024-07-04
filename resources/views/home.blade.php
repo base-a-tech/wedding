@@ -622,7 +622,7 @@
                                                             hạnh phúc trọn vẹn, luôn yêu thương nhau thật nhiều!</a>
                                                     </li>
                                                     <li>
-                                                        <a class="showContent" href="#">Chia vui cùng bạn trong ngày
+                                                        <a class="showContent" href="#">Chung vui cùng bạn trong ngày
                                                             trọng đại này. Cầu mong cuộc sống sau này của 2 vợ chồng
                                                             thật thuận hòa, may mắn, làm ăn phát tài nha.</a>
                                                     </li>

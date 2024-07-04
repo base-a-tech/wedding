@@ -8,10 +8,32 @@ use App\Models\Guest;
 
 class GuestController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $guests = Guest::orderBy('id', 'desc');
+        
+        if ($request->code) {
+            $guests->where('code', 'like', '%'.$request->code.'%');
+        }
+
+        if ($request->name) {
+            $guests->where('name', 'like', '%'.$request->name.'%');
+        }
+
+        if ($request->email) {
+            $guests->where('email', 'like', '%'.$request->email.'%');
+        }
+
+        if ($request->phone) {
+            $guests->where('phone', 'like', '%'.$request->phone.'%');
+        }
+
+        if ($request->side) {
+            $guests->where('side', $request->side);
+        }
+
         return view('admin.guest.index', [
-            'guests' => Guest::all()
+            'guests' => $guests->paginate(10)
         ]);
     }
 
